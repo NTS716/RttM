@@ -1,0 +1,3 @@
+screenRes = (800, 600)
+fps = 35
+scrollSpeed = 2
