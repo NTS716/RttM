@@ -1,8 +1,12 @@
+import log
 import pygame
 from pygame.locals import *
 import sys
 from space import Space
+from rocket import Rocket
 from prefs import screenRes, fps
+
+log.log(__file__)
 
 def main():
     #Initalize Pygame
@@ -18,6 +22,14 @@ def main():
     #create the space background
     space = Space()
 
+    #create the sprite list
+    allSprites = pygame.sprite.Group()
+    asteroidSprites = pygame.sprite.Group()
+
+    #create the rocket
+    rocket = Rocket()
+    allSprites.add(rocket)
+
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -25,6 +37,7 @@ def main():
                 sys.exit()
         space.draw(SCREEN)
         space.scroll()
+        allSprites.draw(SCREEN)
         pygame.display.update()
         clock.tick(fps)
 

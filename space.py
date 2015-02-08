@@ -1,5 +1,8 @@
 import pygame
 from prefs import scrollSpeed, screenRes
+import log
+
+log.log(__file__)
 
 class Space():
 	def __init__(self):
