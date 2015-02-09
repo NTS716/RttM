@@ -4,7 +4,8 @@ from pygame.locals import *
 import sys
 from space import Space
 from rocket import Rocket
-from prefs import screenRes, fps
+from prefs import screenRes, fps, asteroidCount
+from asteroids import Asteroid
 
 log.log(__file__)
 
@@ -30,14 +31,22 @@ def main():
     rocket = Rocket()
     allSprites.add(rocket)
 
+    #create the asteroids
+    for i in range(asteroidCount):
+        asteroid = Asteroid()
+        asteroid.shuffle()
+        asteroidSprites.add(asteroid)
+        allSprites.add(asteroid)
+
     #update function
     def update():
         space.draw(SCREEN)
         allSprites.draw(SCREEN)
         space.scroll()
         rocket.move()
+        for asteroid in asteroidSprites:
+            asteroid.fall()
         
-
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:

@@ -1,6 +1,9 @@
 import pygame
 from colors import *
 from prefs import screenRes, rocketSpeed 
+import log
+
+log.log(__file__)
 
 class Rocket(pygame.sprite.Sprite):
 	def __init__(self):
