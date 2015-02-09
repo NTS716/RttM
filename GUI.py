@@ -30,14 +30,22 @@ def main():
     rocket = Rocket()
     allSprites.add(rocket)
 
+    #update function
+    def update():
+        space.draw(SCREEN)
+        allSprites.draw(SCREEN)
+        space.scroll()
+        rocket.move()
+        
+
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-        space.draw(SCREEN)
-        space.scroll()
-        allSprites.draw(SCREEN)
+            elif event.type == MOUSEBUTTONDOWN:
+                print pygame.mouse.get_pos()
+        update()
         pygame.display.update()
         clock.tick(fps)
 

@@ -1,3 +1,4 @@
 screenRes = (800, 600)
-fps = 60
+fps = 35
 scrollSpeed = 2
+rocketSpeed = 3
