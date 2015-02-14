@@ -1,8 +1,11 @@
-import log
+#DISPLAY
+screenRes = (800, 600)
+fps = 35
+scrollSpeed = 2
+useImages = False
 
-log.log(__file__)
-
-#Reads lines in a txt file called 'prefs.txt' and executes them as python code
-Prefs = open("./prefs.txt")
-for line in Prefs:
-	exec(line)
+#MISC
+asteroidCount = 8
+asteroidSpeed = (screenRes[1] / 65)
+rocketSpeed = ((screenRes[0] / 160), (screenRes[1] / 120))
+collision = True

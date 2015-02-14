@@ -1,13 +1,10 @@
-import log
 import pygame
 from pygame.locals import *
 import sys
 from space import Space
 from rocket import Rocket
-from prefs import screenRes, fps, asteroidCount
+from prefs import screenRes, fps, asteroidCount, collision
 from asteroids import Asteroid
-
-log.log(__file__)
 
 def main():
     #Initalize Pygame
@@ -38,15 +35,22 @@ def main():
         asteroidSprites.add(asteroid)
         allSprites.add(asteroid)
 
+    #create collisions
+    def checkCollides():
+        collides = pygame.sprite.spritecollide(rocket, asteroidSprites, True)
+
     #update function
     def update():
         space.draw(SCREEN)
         allSprites.draw(SCREEN)
+
         space.scroll()
         rocket.move()
         for asteroid in asteroidSprites:
             asteroid.fall()
-        
+        if collision == True:
+            checkCollides() 
+
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:

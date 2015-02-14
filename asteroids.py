@@ -1,5 +1,5 @@
 import pygame
-from prefs import screenRes, asteroidSpeed
+from prefs import screenRes, useImages, asteroidCount, asteroidSpeed
 from random import randint
 from colors import RED
 
@@ -7,19 +7,24 @@ class Asteroid(pygame.sprite.Sprite):
 	def __init__(self):
 		pygame.sprite.Sprite.__init__(self)
 
-		self.size = (50)
-		self.image = pygame.Surface((self.size, self.size))
-		self.image.fill(RED)
-
+		self.size = (100, 100)
+		
+		if useImages == False:
+			self.image = pygame.Surface(self.size)
+			self.image.fill(RED)
+		
 		self.rect = self.image.get_rect()
 
 	def shuffle(self):
+		xSize = randint((screenRes[0] / 14), (screenRes[0] / 7))
+		ySize = randint((screenRes[1] / 10), (screenRes[1] / 5))
+		self.size = (xSize, ySize)
+		
+		if useImages == False:
+			self.image = pygame.Surface(self.size)
+			self.image.fill(RED)
 
-		self.size = randint(screenRes[0] / 16, screenRes[0] / 8)
-		self.image = pygame.Surface((self.size, self.size))
-		self.image.fill(RED)
-
-		self.rect.x = randint(0, screenRes[0] - self.size) 
+		self.rect.x = randint(0, screenRes[0] - self.size[0]) 
 		self.rect.y = (randint(-screenRes[1], 0))
 
 	def fall(self):
